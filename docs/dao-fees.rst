@@ -74,7 +74,7 @@ SynthBurner
 
 The synth burner is used to convert non-USD denominated assets into sUSD. This is accomplished via synth conversion, the same mechanism used in :ref:`cross-asset swaps<cross-asset-swaps>`.
 
-When the synth burner is called to burn a non-synthetic asset, it uses :func:`RegistrySwap.exchange_with_best_rate<Swaps.exchange_with_best_rate>` to swap into a related synth. If no direct path to a synth is avaialble, a swap is made into an intermediate asset.
+When the synth burner is called to burn a non-synthetic asset, it uses :func:`RegistrySwap.exchange_with_best_rate<Swaps.exchange_with_best_rate>` to swap into a related synth. If no direct path to a synth is available, a swap is made into an intermediate asset.
 
 For synths, the burner first transfers to the :ref:`underlying burner<dao-fees-underlying-burner>`. Then it calls :func:`UnderlyingBurner.convert_synth<UnderlyingBurner.convert_synth>`, performing the cross-asset swap within the underlying burner. This is done to avoid requiring another transfer call after the `settlement period <https://docs.synthetix.io/integrations/settlement/>`_ has passed.
 
@@ -126,12 +126,12 @@ There is no configuration required for this burner.
 USDNBurner
 ----------
 
-The USDN burner is a special case that handles only USDN. Due to incompatibilities between the USDN pool and how USDN accrues interest, this burner is required to ensure the LPs recieve a fair share of that interest.
+The USDN burner is a special case that handles only USDN. Due to incompatibilities between the USDN pool and how USDN accrues interest, this burner is required to ensure the LPs receive a fair share of that interest.
 
 The burn process consists of:
 
     1. 50% of the USDN to be burned is transferred back into the pool.
-    2. The burner calls to :func:`donate_admin_fees<PoolProxy.donate_admin_fees>`, creditting the returned USDN to LPs
+    2. The burner calls :func:`donate_admin_fees<PoolProxy.donate_admin_fees>`, crediting the returned USDN to LPs
     3. The remaining USDN is swapped for 3CRV and transferred directly to the :ref:`fee distributor<dao-fees-distributor>`.
 
 There is no configuration required for this burner.
@@ -139,7 +139,7 @@ There is no configuration required for this burner.
 UniswapBurner
 -------------
 
-``UniswapBurner`` is used for burning assets that are not supported by Curve, such as SNX recieved by the DAO via the `Synthetix trading incentives <https://sips.synthetix.io/sips/sip-63>`_ program.
+``UniswapBurner`` is used for burning assets that are not supported by Curve, such as SNX received by the DAO via the `Synthetix trading incentives <https://sips.synthetix.io/sips/sip-63>`_ program.
 
 The burner works by querying swap rates on both Uniswap and Sushiswap using a path of ``initial asset -> wETH -> USDC``. It then performs the swap on whichever exchange offers a better rate. The received USDC is sent into the :ref:`underlying burner<dao-fees-underlying-burner>`.
 
@@ -154,12 +154,12 @@ The underlying burner handles assets that can be directly swapped to USDC, and d
 
 .. note::
 
-    Prior to burning any assets with the underlying burner, you shoudl have completed the entire process with ``SynthBurner``, ``UniswapBurner`` and all of the lending burners.
+    Prior to burning any assets with the underlying burner, you should have completed the entire process with ``SynthBurner``, ``UniswapBurner`` and all of the lending burners.
 
 The burn process consists of:
 
     * For sUSD, first call `settle <https://docs.synthetix.io/contracts/source/contracts/Synthetix/#settle>`_ to complete any pending synth conversions. Then, swap into USDC.
-    * for all other assets that are not DAI/USDC/USDT, swap into USDC.
+    * For all other assets that are not DAI/USDC/USDT, swap into USDC.
     * For DAI/USDC/USDT, only transfer the asset into the burner.
 
 Once the entire burn process has been completed you must call ``execute`` as the final action:
@@ -168,7 +168,7 @@ Once the entire burn process has been completed you must call ``execute`` as the
 
     Adds liquidity to 3pool and transfers the received 3CRV to the fee distributor.
 
-    This is the final function to be called in the burn process, after all other steps are completed. Calling this funciton does nothing if the burner has a zero balance of any of DAI, USDC and USDT.
+    This is the final function to be called in the burn process, after all other steps are completed. Calling this function does nothing if the burner has a zero balance of any of DAI, USDC and USDT.
 
 There is no configuration required for this burner.
 

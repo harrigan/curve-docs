@@ -15,7 +15,7 @@ Creating a Vote
 
 A single vote can perform multiple actions. The `new_vote.py <https://github.com/curvefi/curve-dao-contracts/blob/master/scripts/voting/new_vote.py>`_ script in the DAO repo is used to create new votes.
 
-1. Modify the ``TARGET``, ``ACTIONS`` and ``DESCRPTION`` variables at the beginning of the script. The comments within the script explain how each of these variables work.
+1. Modify the ``TARGET``, ``ACTIONS`` and ``DESCRIPTION`` variables at the beginning of the script. The comments within the script explain how each of these variables work.
 
 2. Simulate the vote in a forked mainnet:
 

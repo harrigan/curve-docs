@@ -200,7 +200,7 @@ Coins and Coin Info
 
         * the index of the coin we are swapping out of is ``2``
         * the index of the coin we are swapping into is ``1``
-        * the coins are considred underlying, so we must call ``exchange_underlying``
+        * the coins are considered underlying, so we must call ``exchange_underlying``
 
     From this information we can perform a token swap:
 

@@ -39,7 +39,7 @@ Swaps cannot occur atomically due to the Synthetix settlement period. Each unset
 Front-running Considerations
 ----------------------------
 
-The benefits from these swaps are most apparent when the exchange amount is greater than $1m USD equivalent. As such, the initiation of a swap gives a strong indicator other market participants that a 2nd post-settlement swap will be coming. We attempt to minimize the risks from this in several ways:
+The benefits from these swaps are most apparent when the exchange amount is greater than $1m USD equivalent. As such, the initiation of a swap gives a strong indicator to other market participants that a 2nd post-settlement swap will be coming. We attempt to minimize the risks from this in several ways:
 
 * ``C -> D`` is not declared on-chain when performing the swap from ``A -> C``.
 * It is possible to perform a partial swap from ``C -> D``, and to swap into multiple final assets. The NFT persists until it has no remaining underlying balance of ``C``.

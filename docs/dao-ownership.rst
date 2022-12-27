@@ -26,14 +26,14 @@ The Curve DAO has a total of three `Aragon Agent <https://hack.aragon.org/docs/g
 
 1. The **Community DAO** (or just "the DAO") governs the day-to-day operation of the protocol.
 
-    Voting is based on a user's holdings of "Vote Escrowed CRV" (veCRV). veCRV is obtained by locking CRV for up to 4 years, with 1 veCRV equal to 1 CRV locked for 4 years. As the lock time decreases, An account's veCRV balance decreases linearly as the time remaining until unlock decreases. veCRV is non-transferrable.
+    Voting is based on a user's holdings of "Vote Escrowed CRV" (veCRV). veCRV is obtained by locking CRV for up to 4 years, with 1 veCRV equal to 1 CRV locked for 4 years. As the lock time decreases, an account's veCRV balance decreases linearly as the time remaining until unlock decreases. veCRV is non-transferrable.
 
     An account must have a minimum balance of 2500 veCRV to make a DAO vote. Each vote lasts for one week. Votes cannot be executed until the entire week has passed.
 
     The DAO has ownership of two admin accounts:
 
     * The **ownership admin** controls most functionality within the protocol. Performing an action via the ownership admin requires a 30% quorum with 51% support.
-    * The **parameter admin** has authority to modify parameters on pools, such as adjusting the amplification co-efficient. Performing an action via the paramater admin requries a 15% quorum with 51% support.
+    * The **parameter admin** has authority to modify parameters on pools, such as adjusting the amplification co-efficient. Performing an action via the paramater admin requires a 15% quorum with 51% support.
 
 2. The **Emergency DAO** has limited authority to kill pools and gauges during extraordinary circumstances.
 
@@ -88,7 +88,7 @@ Configuring Fee Burners
 
     Callable by the emergency and ownership admins.
 
-Withdraing and Burning Fees
+Withdrawing and Burning Fees
 ---------------------------
 
 .. py:function:: PoolProxy.withdraw_admin_fees(pool: address): nonpayable
